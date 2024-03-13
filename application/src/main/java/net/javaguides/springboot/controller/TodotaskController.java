@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin(origins="http://localhost:8082")
+@CrossOrigin(origins="http://localhost:5173")
 public class TodotaskController {
 
 	@Autowired
@@ -39,6 +39,10 @@ public class TodotaskController {
     	Todotask todo = todotaskRepository.findById(id).orElse(null);
         if (todo != null) {
         	todo.setTitle(todoDetails.getTitle());
+        	todo.setDescription(todoDetails.getDescription());
+        	todo.setUser_id(todoDetails.getUser_id());        	
+        	todo.setPlanned_start_date(todoDetails.getPlanned_start_date());
+        	todo.setPlanned_end_date(todoDetails.getPlanned_end_date());
             return todotaskRepository.save(todo);
         }
         return null;

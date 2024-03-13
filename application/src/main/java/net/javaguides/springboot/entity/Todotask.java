@@ -1,7 +1,10 @@
 package net.javaguides.springboot.entity;
 
-import lombok.*;
-
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.NoArgsConstructor;
 import jakarta.persistence.*;
 
 @Getter
@@ -16,7 +19,6 @@ public class Todotask {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
 
     @Column(name = "title")
     private String title;    
