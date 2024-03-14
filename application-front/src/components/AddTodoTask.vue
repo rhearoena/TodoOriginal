@@ -1,9 +1,7 @@
-<template>
-  <h1>{{ msg }}</h1>
-
-  <div class="card">
+<!-- <template>
     <div class="submit-form">
       <div v-if="!submitted">
+        
         <div class="form-group">
           <label for="user_id">User</label>
           <input
@@ -68,59 +66,54 @@
         <button class="btn btn-success" @click="newTodotask">Add</button>
       </div>
     </div>
-  </div>
+  </template> -->
+  
+  <template>
+    <ValidationObserver v-slot="{ invalid }">
+      <form @submit.prevent="onSubmit">
+        <ValidationProvider name="E-mail" rules="required|email" v-slot="{ errors }">
+          <input v-model="email" type="email">
+          <span>{{ errors[0] }}</span>
+        </ValidationProvider>
+  
+        <ValidationProvider name="First Name" rules="required|alpha" v-slot="{ errors }">
+          <input v-model="firstName" type="text">
+          <span>{{ errors[0] }}</span>
+        </ValidationProvider>
+  
+        <ValidationProvider name="Last Name" rules="required|alpha" v-slot="{ errors }">
+          <input v-model="lastName" type="text">
+          <span>{{ errors[0] }}</span>
+        </ValidationProvider>
+  
+        <button type="submit" :disabled="invalid">Submit</button>
+      </form>
+    </ValidationObserver>
   </template>
   
   <script>
-  import TodotaskService from "../services/TodotaskService";
-  
+import { ValidationProvider } from 'vee-validate';
+
   export default {
-    name: "add-todotask",
-    data() {
-      return {
-        todotask: {
-          id: null,
-          title: "",
-          description: "",
-          user_id: "",
-          planned_start_date:"",
-          planned_end_date:""
-        },
-        submitted: false
-      };
-    },
+    data: () => ({
+      email: '',
+      firstName: '',
+      lastName: ''
+    }),
     methods: {
-      saveTodotask() {
-        var data = {
-          title: this.todotask.title,
-          description: this.todotask.description,
-          user_id: this.todotask.user_id,
-          planned_start_date: this.todotask.planned_start_date,
-          planned_end_date: this.todotask.planned_end_date
-        };
-  
-        TodotaskService.create(data)
-          .then(response => {
-            this.todotask.id = response.data.id;
-            console.log(response.data);
-            this.submitted = true;
-          })
-          .catch(e => {
-            console.log(e);
-          });
-      },
-      
-      newTodotask() {
-        this.submitted = false;
-        this.todotask = {};
+      onSubmit () {
+        alert('Form has been submitted!');
       }
-    }
+    },
+    components: {
+    ValidationProvider
+  }
   };
   </script>
   
-  <style>
-  .submit-form {
-    max-width: 300px;
-    margin: auto;
+  <style lang="stylus" scoped>
+  span {
+    display: block;
   }
-  </style>
+</style>
+  

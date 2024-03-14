@@ -1,8 +1,6 @@
 <template>
-   <h2>{{ msg }}</h2>
-<!-- 
   <div class="card">
-      <div v-if="currentTodotask" class="edit-form">
+      <div v-if="data" class="edit-form">
         <div class="modal" role="dialog" id="my_modal_8">
         <div class="modal-box">
           <h3 class="font-bold text-lg">Hello!</h3>
@@ -17,31 +15,31 @@
           <div class="form-group">
             <label for="title">Title</label>
             <input type="text" class="form-control" id="title"
-              v-model="currentTodotask.title"
+              v-model="data.title"
             />
           </div>
           <div class="form-group">
             <label for="description">Description</label>
             <input type="text" class="form-control" id="description"
-              v-model="currentTodotask.description"
+              v-model="data.description"
             />
           </div>
           <div class="form-group">
             <label for="user_id">User</label>
             <input type="text" class="form-control" id="user_id"
-              v-model="currentTodotask.user_id"
+              v-model="data.user_id"
             />
           </div>
           <div class="form-group">
             <label for="planned_start_date">Planned Start Date</label>
             <input type="text" class="form-control" id="planned_start_date"
-              v-model="currentTodotask.planned_start_date"
+              v-model="data.planned_start_date"
             />
           </div>
           <div class="form-group">
             <label for="planned_end_date">Planned End Date</label>
             <input type="text" class="form-control" id="planned_end_date"
-              v-model="currentTodotask.planned_end_date"
+              v-model="data.planned_end_date"
             />
           </div>
         </form>
@@ -64,31 +62,19 @@
         <br />
         <p>Please click on a Todotask...</p>
       </div>
-    </div>  -->
-<div class="max-w-sm rounded overflow-hidden shadow-lg">
-  <div class="px-6 py-4">
-    <div class="font-bold text-xl mb-2">The Coldest Sunset</div>
-    <p class="text-gray-700 text-base">
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
-    </p>
-  </div>
-  <div class="px-6 pt-4 pb-2">
-    <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#photography</span>
-    <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#travel</span>
-    <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#winter</span>
-  </div>
-</div>
-
+    </div>  
   </template>
   
   <script>
   import TodotaskService from "../services/TodotaskService";
   
   export default {
+    props:{
+      data:Object
+    },
     name: "todotask-details",
     data() {
       return {
-        currentTodotask: null,
         message: ''
       };
     },
@@ -96,7 +82,7 @@
       get(id) {
         TodotaskService.get(id)
           .then(response => {
-            this.currentTodotask = response.data;
+            this.data = response.data;
             console.log(response.data);
           })
           .catch(e => {
@@ -104,9 +90,9 @@
           });
       },
       updateTodotask() {
-        TodotaskService.update(this.currentTodotask.id, this.currentTodotask)
+        TodotaskService.update(this.data.id, this.data)
           .then(response => {console.log(response.data);
-            this.message = 'The todotask was updated successfully!';
+            this.message = 'Todotask was updated successfully!';
           })
           .catch(e => {
             console.log(e);
@@ -114,10 +100,11 @@
       },
   
       deleteTodotask() {
-        TodotaskService.delete(this.currentTodotask.id)
+        TodotaskService.delete(this.data.id)
           .then(response => {
             console.log(response.data);
             this.$router.push({ name: "todotasks" });
+            this.message = 'Todotask was deleted successfully!';
           })
           .catch(e => {
             console.log(e);
@@ -128,6 +115,7 @@
       this.message = '';
       this.get(this.$route.params.id);
     }
+  
   };
   </script>
   
