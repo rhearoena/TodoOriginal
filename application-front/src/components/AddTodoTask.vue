@@ -3,17 +3,17 @@
   <div class="w-full max-w-md" >
     <div v-if="!submitted" >
       <div class="form-group">
-        <label  class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="user_id">User</label>
+        <label  class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="assignee">User</label>
         <input 
           required
           type="text"
           class="form-control appearance-none block w-full tracking-wide text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-whiteappearance-none block w-full tracking-wide text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-          id="user_id"
-          v-model="todotask.user_id"
-          name="user_id"
+          id="assignee"
+          v-model="todotask.assignee"
+          name="assignee"
         />
       </div>
-      <div v-if="error.user_id == true" style="color:red">Please input User ID.</div>
+      <div v-if="error.assignee == true" style="color:red">Please input User ID.</div>
       
       <div class="form-group">
         <label  class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="title">Title</label>
@@ -95,7 +95,7 @@ export default {
         id: null,
         title: '',
         description: '',
-        user_id: '',
+        assignee: '',
         planned_start_date:'',
         planned_end_date:'',
         priority:'',
@@ -103,7 +103,7 @@ export default {
       error: {
         title: false,
         description: false,
-        user_id: false,
+        assignee: false,
         planned_start_date:false,
         planned_end_date:false
       },
@@ -115,20 +115,20 @@ export default {
       var data = {
           title: this.todotask.title,
           description: this.todotask.description,
-          user_id: this.todotask.user_id,
+          assignee: this.todotask.assignee,
           planned_start_date: this.todotask.planned_start_date,
           planned_end_date: this.todotask.planned_end_date,
           priority: this.todotask.priority,
       } 
 
       this.error.title = this.todotask.title === '' ? true : false
-      this.error.user_id = this.todotask.user_id === '' ? true : false
+      this.error.assignee = this.todotask.assignee === '' ? true : false
       this.error.description = this.todotask.description === '' ? true : false
       this.error.planned_start_date = this.todotask.planned_start_date === '' ? true : false
       this.error.planned_end_date = this.todotask.planned_end_date === '' ? true : false
 
       if(this.error.title == false && 
-         this.error.user_id == false &&
+         this.error.assignee == false &&
          this.error.description == false &&
          this.error.planned_start_date == false &&
          this.error.planned_end_date == false) {
@@ -142,7 +142,7 @@ export default {
             console.log(e);
           });
       } else {
-        console.log("Title, user_id, description, planned_start_date, planned_end_date fields are empty");
+        console.log("Title, assignee, description, planned_start_date, planned_end_date fields are empty");
       }
 
     },
