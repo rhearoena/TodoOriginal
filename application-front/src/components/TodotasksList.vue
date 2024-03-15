@@ -4,9 +4,9 @@
         <div class="max-w-sm rounded overflow-hidden py-2 px-2">
             <div class="card w-80 bg-neutral text-neutral-content shadow-lg">
                 <div class="card-body items-start text-center">
-                    <h3 class="card-title">{{todotask.id}}</h3>
                     <h3 class="card-title">{{todotask.title}}</h3>
-                    <p>{{todotask.description}}</p>
+                    <h3 class="card-title">{{todotask.priority}}</h3>
+                    <p>{{todotask.progress}}%</p><p>{{todotask.status}}</p>
                     <div class="card-actions justify-items-end">
                         <button class="btn btn-sm btn-info" @click="getTaskDetails(todotask)" onclick="my_modal_3.showModal()">Update</button>
                         <button class="btn btn-sm btn-success">Complete</button>
