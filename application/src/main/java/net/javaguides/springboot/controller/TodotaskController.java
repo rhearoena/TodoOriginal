@@ -41,8 +41,13 @@ public class TodotaskController {
         	todo.setTitle(todoDetails.getTitle());
         	todo.setDescription(todoDetails.getDescription());
         	todo.setUser_id(todoDetails.getUser_id());        	
+        	todo.setPriority(todoDetails.getPriority());        	
         	todo.setPlanned_start_date(todoDetails.getPlanned_start_date());
         	todo.setPlanned_end_date(todoDetails.getPlanned_end_date());
+        	todo.setActual_start_date(todoDetails.getActual_start_date());
+        	todo.setActual_end_date(todoDetails.getActual_end_date());
+        	todo.setProgress(todoDetails.getProgress());
+        	todo.setStatus(todoDetails.getStatus());
             return todotaskRepository.save(todo);
         }
         return null;

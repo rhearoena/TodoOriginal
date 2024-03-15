@@ -28,6 +28,9 @@ public class Todotask {
 
     @Column(name = "user_id", nullable = false)
     private String user_id;
+
+    @Column(name = "priority")
+    private String priority;
     
     @Column(name = "planned_start_date")
     private String planned_start_date;
@@ -41,4 +44,9 @@ public class Todotask {
     @Column(name = "actual_end_date")
     private String actual_end_date;
 
+    @Column(name = "progress")
+    private String progress;
+
+    @Column(name = "status")
+    private String status;
 }
