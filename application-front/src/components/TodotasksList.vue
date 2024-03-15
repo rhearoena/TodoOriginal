@@ -17,7 +17,7 @@
     </div>
 </div>
 <dialog id="my_modal_3" class="modal">
-    <div class="modal-box">
+    <div class="modal-box background-base-color">
         <form method="dialog">
           <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
         </form>
@@ -67,3 +67,8 @@ export default {
 
 
 </script>
+<style>
+.background-base-color{
+  background-color:#f8f7e8;
+}
+</style>
