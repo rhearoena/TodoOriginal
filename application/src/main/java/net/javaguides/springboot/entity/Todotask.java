@@ -20,14 +20,14 @@ public class Todotask {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "title")
+    @Column(name = "title", nullable = false)
     private String title;    
     
     @Column(name = "description")
     private String description;
 
-    @Column(name = "user_id", nullable = false)
-    private String user_id;
+    @Column(name = "assignee")
+    private String assignee;
 
     @Column(name = "priority")
     private String priority;
@@ -49,4 +49,7 @@ public class Todotask {
 
     @Column(name = "status")
     private String status;
+    
+    @Column(name = "complete_flg")
+    private String complete_flg;
 }
