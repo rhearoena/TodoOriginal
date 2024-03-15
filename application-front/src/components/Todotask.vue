@@ -25,9 +25,9 @@
             />
           </div>
           <div class="form-group">
-            <label for="user_id">User</label>
-            <input type="text" class="form-control" id="user_id"
-              v-model="data.user_id"
+            <label for="assignee">Assignee</label>
+            <input type="text" class="form-control" id="assignee"
+              v-model="data.assignee"
             />
           </div>
           <div class="form-group">
