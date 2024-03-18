@@ -17,9 +17,9 @@
     </div>
 </div>
 <dialog id="my_modal_3" class="modal">
-    <div class="modal-box background-base-color">
+    <div class="modal-box">
         <form method="dialog">
-          <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+          <button @click="reloadPage" class="btn btn-sm btn-circle btn-active absolute right-2 top-2">✕</button>
         </form>
         <Todotask :data="this.taskDetails"/>
     </div>
@@ -60,6 +60,9 @@ export default {
         created() {
             this.getAll();
         },
+        reloadPage() {
+window.location.reload();
+},
         components:{
             Todotask
         }
