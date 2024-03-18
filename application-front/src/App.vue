@@ -9,6 +9,7 @@ import Dashboard from './components/Dashboard.vue';
 <style scoped>
 body{
   background-color:#f8f7e8;
+}
 .logo {
   height: 6em;
   padding: 1.5em;
