@@ -7,6 +7,7 @@ import Dashboard from './components/Dashboard.vue';
 </template>
 
 <style scoped>
+
 .logo {
   height: 6em;
   padding: 1.5em;
