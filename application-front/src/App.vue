@@ -7,7 +7,8 @@ import Dashboard from './components/Dashboard.vue';
 </template>
 
 <style scoped>
-
+body{
+  background-color:#f8f7e8;
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -19,5 +20,10 @@ import Dashboard from './components/Dashboard.vue';
 }
 .logo.vue:hover {
   filter: drop-shadow(0 0 2em #42b883aa);
+}
+</style>
+<style>
+body{
+  background-color:#f8f7e8;
 }
 </style>

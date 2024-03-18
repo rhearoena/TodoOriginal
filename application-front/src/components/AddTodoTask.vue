@@ -1,5 +1,4 @@
 <template>
-  
   <div class="w-full" >
     <div v-if="!submitted" >
       <div class="form-group pt-2">
@@ -144,7 +143,6 @@ export default {
       } else {
         console.log("Title field is empty");
       }
-
     },
     
     newTodotask() {
