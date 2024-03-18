@@ -1,7 +1,7 @@
 <template>
     <div class="py-5 font-bold background-base">
     <h1>Todo Application</h1>
-    <button class="btn" onclick="my_modal_4.showModal()">Add Task</button>
+    <button class="btn bg-white text-[#163057] outline" onclick="my_modal_4.showModal()">Add Task</button>
         <dialog id="my_modal_4" class="modal">
             <div class="modal-box w-11/12 max-w-5xl background-base">
                 <form method="dialog">
@@ -11,6 +11,7 @@
                 <AddTodoTask/>
             </div>
         </dialog>
+        
     <TodotasksList/>
     
 </div>
