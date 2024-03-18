@@ -20,17 +20,6 @@
             </button>
         </div>
     </div>
-    <!-- <button class="btn float-right bg-white text-[#163057] outline mb-5" onclick="my_modal_4.showModal()">Add Task</button>
-        <dialog id="my_modal_4" class="modal">
-        <div class="modal-box w-11/12 max-w-5xl">
-            <AddTodoTask/>
-            <div class="modal-action">
-            <form method="dialog">
-                <button class="btn">Close</button>
-            </form>
-            </div>
-        </div>
-        </dialog> -->
     <TodotasksList/>
     
 </div>
@@ -39,3 +28,8 @@
 import TodotasksList from "./TodotasksList.vue";
 import AddTodoTask from "./AddTodoTask.vue";
 </script>
+<style>
+.background-base{
+  background-color: #f8f7e8;
+}
+</style>

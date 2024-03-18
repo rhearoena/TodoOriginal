@@ -1,84 +1,89 @@
 <template>
-<h1>Add New Task</h1>
-  <div class="w-full max-w-md" >
+  <div class="w-full" >
     <div v-if="!submitted" >
-      <div class="form-group">
-        <label  class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="assignee">User</label>
-        <input 
-          required
-          type="text"
-          class="form-control appearance-none block w-full tracking-wide text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-whiteappearance-none block w-full tracking-wide text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-          id="assignee"
-          v-model="todotask.assignee"
-          name="assignee"
-        />
-      </div>
-      <div v-if="error.assignee == true" style="color:red">Please input User ID.</div>
-      
-      <div class="form-group">
-        <label  class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="title">Title</label>
+      <div class="form-group pt-2">
+        <label class="block uppercase tracking-wide text-color-blue text-base font-bold mb-2 text-left" for="title">Title</label>
         <input
-        type="text"
-        class="form-control appearance-none block w-full tracking-wide text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-        id="title"
         required
+        type="text"
+        class="form-control appearance-none block w-3/6 tracking-wide text-color-blue border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+        id="title"
         v-model="todotask.title"
         name="title"
         />
       </div>
-      <div v-if="error.title == true" style="color:red">Please input Title.</div>
       
-      <div class="form-group">
-        <label  class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="description">Description</label>
-        <input
-        class="form-control appearance-none block w-full tracking-wide text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+      <div class="form-group pt-2">
+        <label  class="block uppercase tracking-wide text-color-blue text-base font-bold mb-2 text-left" for="description">Description</label>
+        <textarea type="text"
+        class="form-control appearance-none block w-full tracking-wide text-color-blue border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
         id="description"
-        required
         v-model="todotask.description"
-        name="description"
-        />
+        name="description">
+        </textarea>
       </div>
-      <div v-if="error.description == true" style="color:red">Please input Description.</div>
       
-      <div class="form-group">
-        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="planned_start_date">Planned Start Date</label>
-        <input
-        class="form-control appearance-none block w-full tracking-wide text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-        id="planned_start_date"
-        required
-        v-model="todotask.planned_start_date"
-        name="planned_start_date"
-        />    
-        <div v-if="error.planned_start_date == true" style="color:red">Please input Planned Start Date.</div>
-        
-      </div>    
-      <div class="form-group">
-        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="planned_end_date">Planned End Date</label> 
-        <input
-        class="form-control appearance-none block w-full tracking-wide text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+      <div class="form-group flex flex-wrap column-4">
+        <div class="pr-6 py-2">
+        <label class="block uppercase tracking-wide text-color-blue text-base font-bold mb-2 text-left" for="assignee">Assignee</label>
+        <input 
+          type="text"
+          class="form-control appearance-none block w-64 tracking-wide text-color-blue border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+          id="assignee"
+          v-model="todotask.assignee"
+          name="assignee"
+        />
+        </div>
+        <div class="pr-7 py-2">
+          <label class="block uppercase tracking-wide text-color-blue text-base font-bold mb-2 text-left" for="priority">Priority</label> 
+          <select class="form-control appearance-none block w-64 tracking-wide text-color-blue border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
+          id="priority" v-model="todotask.priority" name="priority">
+          
+            <option value="" disabled selected hidden>Please select priority</option>
+            <option>on hold</option>
+            <option>on progress</option>
+            <option>not yet started</option>
+          </select>
+        </div>
+        <div class="pr-7 py-2">
+          <label class="block uppercase tracking-wide text-color-blue text-base font-bold mb-2 text-left" for="planned_start_date">Planned Start Date</label>
+          <input
+          type="date"
+          class="form-control appearance-none block w-48 tracking-wide text-color-blue border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+          id="planned_start_date"
+          v-model="todotask.planned_start_date"
+          name="planned_start_date"
+          />  
+       </div>  
+       <div class="py-2">
+        <label class="block uppercase tracking-wide text-color-blue text-base font-bold mb-2 text-left" for="planned_end_date">Planned End Date</label> 
+         <input
+        type="date"
+        class="form-control appearance-none block w-48 tracking-wide text-color-blue border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
         id="planned_end_date"
-        required
         v-model="todotask.planned_end_date"
         name="planned_end_date"
         />
       </div>
-      <div v-if="error.planned_end_date == true" style="color:red">Please input Planned End Date.</div>
-
-      <div class="form-group">
-        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="priority">Priority</label> 
-        <select class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline" 
-        id="priority" v-model="todotask.priority" name="priority" placeholder="Please select priority">
-          <option>on hold</option>
-          <option>on progress</option>
-          <option>not yet started</option>
-        </select>
-      </div>
       
-      <button @click="saveTodotask" class="btn btn-success">Submit</button>
+      <div class="py-2 px-3 w-full">
+        <div v-if="error.title == true" role="alert" class="alert alert-error w-1/2 shadow-lg text-color-blue py-2 ">
+          <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-7 w-7 " fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+          <span>Failed to save task. Task title is empty.</span>
+        </div>
+      </div>
+     </div>    
+     
+     <div class="py-2 w-full">
+      <div class="flex flex-row-reverse">
+      <button type="reset" @click="resetInput" class="btn btn-warning text-color-blue text-base my-3 mx-3 w-1/6">Clear</button>
+      <button @click="saveTodotask" class="btn btn-success text-color-blue text-base my-3 mx-3 w-1/6">Submit</button>
     </div>
-    <div v-else>
-      <h4>You submitted successfully!</h4>
-      <button class="btn btn-success" @click="newTodotask">Add</button>
+    </div>
+    </div>
+    <div v-else class="font-bold">
+      <h3>You submitted successfully!</h3>
+      <button class="btn btn-success py-3" @click="newTodotask">Add</button>
     </div>
   </div>
  
@@ -99,13 +104,12 @@ export default {
         planned_start_date:'',
         planned_end_date:'',
         priority:'',
+        progress:'',
+        status:'',
+        complete_flg:''
       },
       error: {
-        title: false,
-        description: false,
-        assignee: false,
-        planned_start_date:false,
-        planned_end_date:false
+        title: false
       },
       submitted: false
     };
@@ -119,19 +123,14 @@ export default {
           planned_start_date: this.todotask.planned_start_date,
           planned_end_date: this.todotask.planned_end_date,
           priority: this.todotask.priority,
+          progress: "0",
+          status: '-',
+          complete_flg: "0",
       } 
 
       this.error.title = this.todotask.title === '' ? true : false
-      this.error.assignee = this.todotask.assignee === '' ? true : false
-      this.error.description = this.todotask.description === '' ? true : false
-      this.error.planned_start_date = this.todotask.planned_start_date === '' ? true : false
-      this.error.planned_end_date = this.todotask.planned_end_date === '' ? true : false
 
-      if(this.error.title == false && 
-         this.error.assignee == false &&
-         this.error.description == false &&
-         this.error.planned_start_date == false &&
-         this.error.planned_end_date == false) {
+      if(this.error.title == false) {
         TodotaskService.create(data)
           .then(response => {
             this.todotask.id = response.data.id;
@@ -142,15 +141,23 @@ export default {
             console.log(e);
           });
       } else {
-        console.log("Title, assignee, description, planned_start_date, planned_end_date fields are empty");
+        console.log("Title field is empty");
       }
-
     },
     
     newTodotask() {
       this.submitted = false;
       this.todotask = {};
-    }
+    },
+    resetInput() {      
+      this.error.title = this.todotask.title = false
+      this.todotask.title= "";
+      this.todotask.description= "";
+      this.todotask.assignee= "";
+      this.todotask.planned_start_date= "";
+      this.todotask.planned_end_date= "";
+      this.todotask.priority= "";
+    },
   }
 };
 </script>
@@ -160,5 +167,8 @@ export default {
   max-width: 300px;
   margin: auto;
 }
+.text-color-blue{
+      color: #163057;
+    }
 </style>
 

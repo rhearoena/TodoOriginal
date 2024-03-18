@@ -152,6 +152,7 @@
       getTaskDetails(todotask) {
         this.taskDetails = todotask;
         this.showModal = true;
+
       },
       completeTask(todotask) {
         // Implement completeTask functionality
@@ -187,3 +188,4 @@
   }
   
   </style>
+
